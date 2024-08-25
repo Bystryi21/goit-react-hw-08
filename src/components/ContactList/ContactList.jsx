@@ -6,14 +6,7 @@ export default function ContactList({ values, deleteUser }) {
       {values.map((value) => {
         return (
           <li className={css.li} key={value.id}>
-            <Contact value={value} />
-            <button
-              type="button"
-              className={css.btn}
-              onClick={() => deleteUser(value.id)}
-            >
-              Delete
-            </button>
+            <Contact value={value} deleteUser={deleteUser} />
           </li>
         );
       })}
