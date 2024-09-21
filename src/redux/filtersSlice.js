@@ -1,14 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { initialState } from "./store";
-
-// export const initialState = {
-//   contacts: {
-//     items: [],
-//   },
-//   filters: {
-//     name: "",
-//   },
-// };
 
 const initialState = {
   name: "",
@@ -27,19 +17,4 @@ const slice = createSlice({
 export const { filter } = slice.actions;
 export default slice.reducer;
 
-// export const filter = createAction("filter/filterName");
-
-// export const filtersReducer = (state = initialState.filters, action) => {
-//   switch (action.type) {
-//     case "filter/filterName":
-//       return {
-//         ...state,
-//         filters: {
-//           name: action.payload,
-//         },
-//       };
-
-//     default:
-//       return state;
-//   }
-// };
+export const selectFilters = (state) => state.filters.name;
