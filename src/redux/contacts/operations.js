@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 // axios.defaults.baseURL = "https://66ec5c322b6cf2b89c5e340f.mockapi.io";
+axios.defaults.baseURL = "https://connections-api.goit.global/";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
@@ -12,6 +13,12 @@ export const fetchContacts = createAsyncThunk(
     } catch {
       return thunkAPI.rejectWithValue();
     }
+  },
+  {
+    condition: (_, thunkApi) => {
+      const reduxState = thunkApi.getState();
+      return reduxState.auth.token !== null;
+    },
   }
 );
 
@@ -24,6 +31,12 @@ export const addContact = createAsyncThunk(
     } catch {
       return thunkAPI.rejectWithValue();
     }
+  },
+  {
+    condition: (_, thunkApi) => {
+      const reduxState = thunkApi.getState();
+      return reduxState.auth.token !== null;
+    },
   }
 );
 
@@ -36,5 +49,11 @@ export const deleteContact = createAsyncThunk(
     } catch {
       return thunkAPI.rejectWithValue;
     }
+  },
+  {
+    condition: (_, thunkApi) => {
+      const reduxState = thunkApi.getState();
+      return reduxState.auth.token !== null;
+    },
   }
 );
