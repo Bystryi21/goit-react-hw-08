@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 // import { addContact } from "../../redux/contactsSlice";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -31,37 +31,40 @@ export default function ContactForm() {
     actions.resetForm();
   };
   return (
-    <Formik
-      initialValues={initialValue}
-      onSubmit={handleSubmit}
-      validationSchema={FeedbackSchema}
-    >
-      <Form className={css.form}>
-        <div className={css.wrapperFormName}>
-          <label>Name</label>
-          <Field type="text" name="name" className={css.input} />
-          <ErrorMessage
-            name="name"
-            component="span"
-            className={css.errorMessageName}
-          />
-        </div>
+    <div>
+      <h1>Phonebook</h1>
+      <Formik
+        initialValues={initialValue}
+        onSubmit={handleSubmit}
+        validationSchema={FeedbackSchema}
+      >
+        <Form className={css.form}>
+          <div className={css.wrapperFormName}>
+            <label>Name</label>
+            <Field type="text" name="name" className={css.input} />
+            <ErrorMessage
+              name="name"
+              component="span"
+              className={css.errorMessageName}
+            />
+          </div>
 
-        <div className={css.wrapperFormNumber}>
-          <label>Number</label>
-          <Field type="tel" name="number" className={css.input} />
-          <ErrorMessage
-            name="number"
-            component="span"
-            className={css.errorMessageNumber}
-          />
-        </div>
+          <div className={css.wrapperFormNumber}>
+            <label>Number</label>
+            <Field type="tel" name="number" className={css.input} />
+            <ErrorMessage
+              name="number"
+              component="span"
+              className={css.errorMessageNumber}
+            />
+          </div>
 
-        <button type="submit" className={css.btn}>
-          Add contact
-        </button>
-      </Form>
-    </Formik>
+          <button type="submit" className={css.btn}>
+            Add contact
+          </button>
+        </Form>
+      </Formik>
+    </div>
   );
 }
 

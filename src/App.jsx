@@ -1,33 +1,49 @@
 import "./App.css";
-import ContactList from "./components/ContactList/ContactList";
-import SearchBox from "./components/SearchBox/SearchBox";
-import ContactForm from "./components/ContactForm/ContactForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchContacts } from "./redux/contactsOps";
-import Loading from "./components/Loading/Loading";
-import Error from "./components/Error/Error";
-import { selectLoading, selectError } from "./redux/contactsSlice";
+import { fetchContacts } from "./redux/contacts/operations";
+import Layout from "./components/Layout/Layout";
+import { refreshUser } from "./redux/auth/operations";
+import HomePage from "./pages/HomePage/HomePage";
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import { Route, Routes } from "react-router-dom";
+import ContactsPage from "./pages/ContactsPage/ContactsPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import NotFound from "./components/NotFound/NotFound";
+import AppBar from "./components/AppBar/AppBar";
 
 function App() {
   const dispatch = useDispatch();
 
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  return (
-    <div className="container">
-      <h1>Phonebook</h1>
-      <ContactForm />
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Please wait, updaiting user info ...</b>
+  ) : (
+    <Layout>
+      {/* <ContactForm />
       <SearchBox />
       {loading && !error && <Loading />}
       {error && !loading && <Error />}
-      <ContactList />
-    </div>
+      <ContactList /> */}
+      <AppBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
   );
 }
 
