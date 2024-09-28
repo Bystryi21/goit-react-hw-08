@@ -12,6 +12,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import NotFound from "./components/NotFound/NotFound";
 import AppBar from "./components/AppBar/AppBar";
+import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +40,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/login"
+          element={<RestrictedRoute component={<LoginPage />} />}
+        />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
