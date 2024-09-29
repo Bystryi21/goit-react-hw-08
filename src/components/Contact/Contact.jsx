@@ -10,20 +10,18 @@ export default function Contact({ name, number, id }) {
 
   const handleDelete = () => dispatch(deleteContact(id));
   return (
-    <>
+    <div className={css.container}>
       <div className={css.wraper}>
         <FaUser />
         <div>{name}</div>
-      </div>
 
-      <div className={css.wraper}>
         <FaPhone />
         <div>{number}</div>
       </div>
       <button type="button" className={css.btn} onClick={handleDelete}>
         Delete
       </button>
-    </>
+    </div>
   );
 }
 

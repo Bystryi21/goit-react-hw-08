@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -38,4 +44,5 @@
   display: flex;
   align-self: end;
   padding: 8px;
+  cursor: pointer;
 }

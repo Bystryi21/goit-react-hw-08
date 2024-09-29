@@ -57,3 +57,20 @@ export const deleteContact = createAsyncThunk(
     },
   }
 );
+
+export const updateContact = createAsyncThunk(
+  "contacts/updateContact",
+  async (idContact, thunkAPI) => {
+    try {
+      await axios.patch(`/contacts/${idContact}`);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.massage);
+    }
+  },
+  {
+    condition: (_, thunkApi) => {
+      const reduxState = thunkApi.getState();
+      return reduxState.auth.token !== null;
+    },
+  }
+);

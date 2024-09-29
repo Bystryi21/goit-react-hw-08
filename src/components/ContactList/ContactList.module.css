@@ -2,7 +2,7 @@
   padding-left: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 10px;
 }
 
 .li {
@@ -17,8 +17,6 @@
   justify-content: start;
   box-sizing: border-box;
   gap: 5px;
-  flex-wrap: wrap;
-  position: relative;
   padding: 10px;
 }
 
