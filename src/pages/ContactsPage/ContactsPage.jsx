@@ -6,8 +6,13 @@ import Loading from "../../components/Loading/Loading";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "../../redux/contacts/operations";
-import { selectError, selectLoading } from "../../redux/contacts/selectors";
+import {
+  selectContacts,
+  selectError,
+  selectLoading,
+} from "../../redux/contacts/selectors";
 import toast, { Toaster } from "react-hot-toast";
+import css from "./ContactsPage.module.css";
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -15,6 +20,8 @@ export default function ContactsPage() {
   const isLoading = useSelector(selectLoading);
 
   const isError = useSelector(selectError);
+
+  const contacts = useSelector(selectContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -44,8 +51,11 @@ export default function ContactsPage() {
           <Toaster position="top-center" reverseOrder={false} />
         </div>
       )}
-
-      <ContactList />
+      {contacts.length > 0 ? (
+        <ContactList />
+      ) : (
+        <p className={css.altText}>Add your first contact 😉</p>
+      )}
     </div>
   );
 }
