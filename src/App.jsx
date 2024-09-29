@@ -1,7 +1,6 @@
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchContacts } from "./redux/contacts/operations";
 import Layout from "./components/Layout/Layout";
 import { refreshUser } from "./redux/auth/operations";
 import HomePage from "./pages/HomePage/HomePage";
@@ -12,16 +11,13 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import NotFound from "./components/NotFound/NotFound";
 import AppBar from "./components/AppBar/AppBar";
-import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
+import RestrictedRoute from "./RestrictedRoute";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
 
   const isRefreshing = useSelector(selectIsRefreshing);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -31,20 +27,25 @@ function App() {
     <b>Please wait, updaiting user info ...</b>
   ) : (
     <Layout>
-      {/* <ContactForm />
-      <SearchBox />
-      {loading && !error && <Loading />}
-      {error && !loading && <Error />}
-      <ContactList /> */}
       <AppBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/register"
+          element={<RestrictedRoute component={<RegisterPage />} />}
+        />
         <Route
           path="/login"
-          element={<RestrictedRoute component={<LoginPage />} />}
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
+          }
         />
-        <Route path="/contacts" element={<ContactsPage />} />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
