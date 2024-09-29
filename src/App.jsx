@@ -7,10 +7,10 @@ import HomePage from "./pages/HomePage/HomePage";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Route, Routes } from "react-router-dom";
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import RegisterPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import NotFound from "./components/NotFound/NotFound";
-import AppBar from "./components/AppBar/AppBar";
+// import AppBar from "./components/AppBar/AppBar";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
 // import { lazy, Suspense } from "react";
@@ -28,7 +28,7 @@ function App() {
     <b>Please wait, updaiting user info ...</b>
   ) : (
     <Layout>
-      <AppBar />
+      {/* <AppBar /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
