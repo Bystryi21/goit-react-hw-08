@@ -13,6 +13,7 @@ import NotFound from "./components/NotFound/NotFound";
 import AppBar from "./components/AppBar/AppBar";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
+// import { lazy, Suspense } from "react";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,12 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route
           path="/register"
-          element={<RestrictedRoute component={<RegisterPage />} />}
+          element={
+            <RestrictedRoute
+              component={<RegisterPage />}
+              redirectTo="/contacts"
+            />
+          }
         />
         <Route
           path="/login"
