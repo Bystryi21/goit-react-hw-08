@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.parag {
+  color: white;
+}
+
 .btn {
   padding: 8px;
   border-radius: 10px;

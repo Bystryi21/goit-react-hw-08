@@ -9,7 +9,7 @@ export default function UserMenu() {
 
   return (
     <div className={css.wrapper}>
-      <p>Welcome , {user.name}</p>
+      <p className={css.parag}>Welcome , {user.name}</p>
       <button
         className={css.btn}
         type="button"

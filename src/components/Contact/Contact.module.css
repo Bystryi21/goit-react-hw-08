@@ -11,6 +11,10 @@
   flex-grow: 1;
 }
 
+.title {
+  color: white;
+}
+
 .btn {
   border-radius: 10px;
   border: transparent;

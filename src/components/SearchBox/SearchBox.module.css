@@ -3,6 +3,10 @@
   padding-top: 10px;
 }
 
+.tittle {
+  color: white;
+}
+
 .input {
   border-radius: 10px;
   border: 1px solid #ccc;

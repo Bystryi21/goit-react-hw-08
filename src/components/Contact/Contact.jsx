@@ -12,11 +12,11 @@ export default function Contact({ name, number, id }) {
   return (
     <div className={css.container}>
       <div className={css.wraper}>
-        <FaUser />
-        <div>{name}</div>
+        <FaUser style={{ color: "white" }} />
+        <div className={css.title}>{name}</div>
 
-        <FaPhone />
-        <div>{number}</div>
+        <FaPhone style={{ color: "white" }} />
+        <div className={css.title}>{number}</div>
       </div>
       <button type="button" className={css.btn} onClick={handleDelete}>
         Delete

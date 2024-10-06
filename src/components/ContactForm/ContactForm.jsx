@@ -32,7 +32,7 @@ export default function ContactForm() {
   };
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h1 className={css.title}>Phonebook</h1>
       <Formik
         initialValues={initialValue}
         onSubmit={handleSubmit}
@@ -40,7 +40,7 @@ export default function ContactForm() {
       >
         <Form className={css.form}>
           <div className={css.wrapperFormName}>
-            <label>Name</label>
+            <label className={css.label}>Name</label>
             <Field type="text" name="name" className={css.input} />
             <ErrorMessage
               name="name"
@@ -50,7 +50,7 @@ export default function ContactForm() {
           </div>
 
           <div className={css.wrapperFormNumber}>
-            <label>Number</label>
+            <label className={css.label}>Number</label>
             <Field type="tel" name="number" className={css.input} />
             <ErrorMessage
               name="number"
